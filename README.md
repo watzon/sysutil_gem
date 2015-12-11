@@ -1,5 +1,7 @@
 # Sysutil
 
+[![Gem Version](https://badge.fury.io/rb/sysutil.svg)](https://badge.fury.io/rb/sysutil)
+
 Sysutil is a gem wrapper for a host of linux system functions such as modifying users.
 
 ## Installation
