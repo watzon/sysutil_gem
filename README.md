@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Usage instructions will be in the [Wiki](https://github.com/iDev0urer/sysutil_gem/wiki)
 
 ## Development
 
