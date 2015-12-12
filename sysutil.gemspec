@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Control linux with ruby"
   spec.description   = "Library that acts as a wrapper for various linux commands"
-  spec.homepage      = "http://cwatsondev.com"
+  spec.homepage      = "https://github.com/iDev0urer/sysutil_gem"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
