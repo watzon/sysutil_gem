@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Sysutil do
 
-  Config.configure(root_password: 'Pi31415926')
+  Config.configure(root_password: 'ROOT PASSWORD HERE')
   
   it 'has a version number' do
     expect(Sysutil::VERSION).not_to be nil
