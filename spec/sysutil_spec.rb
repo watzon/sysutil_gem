@@ -21,21 +21,21 @@ describe Sysutil do
     
     describe '.list' do
       it 'provides a list of users as array' do
-        expect(user.list[:output]).to be_an(Array)
+        expect(user.list).to be_an(Array)
       end
     end
 
     describe '.add!' do
       it 'adds a user' do
         u = user.add!('testuser', 'testpassword')
-        expect(u[:success]).to eq(true)
+        expect(u).to eq(true)
       end
     end
 
     describe '.delete!' do
       it 'deletes a user' do
         u = user.delete!('testuser')
-        expect(u[:success]).to eq(true)
+        expect(u).to eq(true)
       end
     end
     

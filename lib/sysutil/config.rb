@@ -1,8 +1,8 @@
-module Config
+module Sysutil
   # Configuration defaults
   @config = {
     log_level: 'verbose', # print all the things
-    root_password: '', # not necessary if your running this as root
+    root_password: '' # not necessary if your running this as root
   }
 
   @valid_config_keys = @config.keys
