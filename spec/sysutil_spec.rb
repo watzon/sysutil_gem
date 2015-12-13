@@ -2,6 +2,9 @@ require 'active_support/core_ext/kernel/reporting'
 require 'spec_helper'
 
 describe Sysutil do
+
+  Config.configure(root_password: 'Pi31415926')
+  
   it 'has a version number' do
     expect(Sysutil::VERSION).not_to be nil
   end
@@ -18,21 +21,21 @@ describe Sysutil do
     
     describe '.list' do
       it 'provides a list of users as array' do
-        expect(user.list).to be_an(Array)
+        expect(user.list[:output]).to be_an(Array)
       end
     end
 
     describe '.add!' do
       it 'adds a user' do
         u = user.add!('testuser', 'testpassword')
-        expect(u).to eq(true)
+        expect(u[:success]).to eq(true)
       end
     end
 
     describe '.delete!' do
       it 'deletes a user' do
         u = user.delete!('testuser')
-        expect(u).to eq(true)
+        expect(u[:success]).to eq(true)
       end
     end
     

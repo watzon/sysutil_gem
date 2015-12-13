@@ -1,12 +1,13 @@
 require "sysutil/version/version"
+require "sysutil/functions"
 require "sysutil/config"
 
 module Sysutil
-    
+  include Config
 end
 
-require "sysutil/functions"
-require "sysutil/users"
+require "sysutil/user"
+require "sysutil/package"
 
 
 

@@ -17,23 +17,23 @@ module Sysutil
       
         if status.success?
           # Split the output on the newline to make an array of users
-          out.split("\n")
+          {success: true, output: out.split("\n")}
         else
-          "Error: #{err}"
+          {success: false, message: "Error: #{err}"}
         end
         
     end
 
     def self.add!(name, opts={})
 
-      add_user_command = cond_sudo + "adduser #{name}"
+      add_user_command = conditional_sudo + "adduser #{name}"
       
       out, err, status = Open3.capture3(add_user_command)
 
       if status.success?
-        true
+        {success: true, output: out}
       else
-        "Error: #{err}"
+        {success: false, output: "Error: #{err}"}
       end
       
     end
@@ -41,26 +41,26 @@ module Sysutil
     def self.set_password!(user, password, confirmation)
 
       # TODO: Change user password in such a way that we don't need chpasswd
-      set_password_command = cond_sudo + "echo \"#{user}:#{password}\" | /usr/sbin/chpasswd"
+      set_password_command = conditional_sudo + "echo \"#{user}:#{password}\" | /usr/sbin/chpasswd"
       puts set_password_command
 
       if password == confirmation
         out, err, status = Open3.capture3(set_password_command)
 
         if status.success?
-          true
+          {succesS: true, output: out}
         else
-          "Error: #{err}"
+          {success: false, output: "Error: #{err}"}
         end
       else
-        "Error: Passwords don't match"
+        {success: false, output: "Error: Passwords don't match"}
       end
       
     end
 
     def self.delete!(name, opts={})
       
-      delete_user_command = cond_sudo + "userdel #{name}"
+      delete_user_command = conditional_sudo + "userdel #{name}"
 
       if opts[:force]
         delete_user_command += ' --force'
@@ -73,9 +73,9 @@ module Sysutil
       out, err, status = Open3.capture3(delete_user_command)
 
       if status.success?
-        true
+        {success: true, output: out}
       else
-        "Error: #{err}"
+        {success: false, output: "Error: #{err}"}
       end
       
     end
@@ -89,9 +89,9 @@ module Sysutil
       out, err, status = Open3.capture3(add_to_group_command)
 
       if status.success?
-        true
+        {success: true, output: out}
       else
-        "Error: #{err}"
+        {success: false, output: "Error: #{err}"}
       end
     end
 
@@ -103,22 +103,11 @@ module Sysutil
 
       if status.success?
         groups = /(?<=\: )([a-z ]+)/.match(out).to_s.split(' ')
-        return groups
+        {success: true, output: groups}
       else
-        "Error: #{err}"
+        {success: true, message: "Error: #{err}"}
       end
       
-    end
-
-
-    private
-
-    def self.cond_sudo
-      if current_user != "root"
-        "echo #{Sysutil::config[:root_password]} | sudo -S "
-      else
-        ""
-      end
     end
     
   end
